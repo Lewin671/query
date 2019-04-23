@@ -1,3 +1,4 @@
+# coding: utf-8
 from models import create_session,word,sentence
 from config import SOUND_DIR,DISPLAY_SOUND,DISPLAY_TYPE
 from logger import logger

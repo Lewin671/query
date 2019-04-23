@@ -1,4 +1,5 @@
 # coding: utf-8
+
 import os
 
 # 项目的根目录
@@ -14,7 +15,7 @@ LOGGER_URI = os.path.join(BASE_PATH, 'data/log.txt')
 SOUND_DIR = os.path.join(BASE_PATH,"data/sounds")
 
 # 是否选择有读音,默认是True
-DISPLAY_SOUND = True
+DISPLAY_SOUND = False
 
 # 发音方式默认为英式发音,us为美式发音
 DISPLAY_TYPE = "uk"
