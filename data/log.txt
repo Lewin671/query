@@ -1,3 +1,1 @@
-2019-04-23 13:26:33,758 - INFO - query word: 调整
-2019-04-23 13:28:38,814 - INFO - query word: 点
-2019-04-23 15:57:35,955 - INFO - query word: test
+2019-04-23 16:03:43,033 - INFO - query word: test
