@@ -5,8 +5,11 @@
 
 ### 安装说明: 
 
+如果没有安装python3，则首先需要安装Python3和Python3的pip: `sudo apt install  python3-dev python3-pip`。
+
 #### for linux
-1. 安装Python相关库： `pip install -r requirements.txt`。
+
+1. 安装Python相关库： `pip3 install -r requirements.txt`。
 
 2. 进入项目的文件夹，然后在终端下执行命令:`bash startup.sh` 或者`./startup.sh`。
 
