@@ -1,0 +1,4 @@
+test
+__pycache__
+data/*.log.txt
+data/*.mp3

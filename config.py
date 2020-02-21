@@ -15,7 +15,7 @@ LOGGER_URI = os.path.join(BASE_PATH, 'data/log.txt')
 SOUND_DIR = os.path.join(BASE_PATH,"data/sounds")
 
 # 是否选择有读音,默认是True
-DISPLAY_SOUND = False
+DISPLAY_SOUND = True
 
-# 发音方式默认为英式发音,us为美式发音
-DISPLAY_TYPE = "uk"
+# 英式发音为"uk",美式发音为"us"
+DISPLAY_TYPE = "us"

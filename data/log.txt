@@ -7,3 +7,8 @@
 2019-04-23 16:52:06,924 - INFO - query word: trace
 2019-04-23 17:07:22,207 - INFO - query word: query
 2019-04-23 17:41:53,291 - INFO - query word: query
+2020-02-21 17:44:47,495 - INFO - query word: test
+2020-02-21 17:55:04,490 - INFO - query word: test
+2020-02-21 17:55:07,815 - INFO - query word: test
+2020-02-21 17:56:52,814 - INFO - query word: 补码
+2020-02-21 17:57:00,897 - INFO - query word: complement
