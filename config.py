@@ -12,10 +12,13 @@ DATABASE_URI = os.path.join(BASE_PATH, "data/data.db")
 LOGGER_URI = os.path.join(BASE_PATH, 'data/log.txt')
 
 # 读音的地址
-SOUND_DIR = os.path.join(BASE_PATH,"data/sounds")
+SOUND_DIR = os.path.join(BASE_PATH, "data/sounds")
 
 # 是否选择有读音,默认是True
 DISPLAY_SOUND = True
 
 # 英式发音为"uk",美式发音为"us"
 DISPLAY_TYPE = "us"
+
+# 例句的最大个数
+MAX_SENTENCE_NUMBER = 5
