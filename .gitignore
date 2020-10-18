@@ -4,5 +4,6 @@ data
 build
 dist
 test
-**.DS_Store
+.idea
+**/.DS_Store
 *.spec
