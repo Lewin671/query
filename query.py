@@ -64,12 +64,14 @@ if __name__ == "__main__":
 
     if len(sys.argv) <= 1:
         print("usage: query [word]")
+
     elif len(sys.argv) > 2:
         print("parameter number is excessive.")
     else:
         parameter = sys.argv[1]
         if parameter == "-h" or parameter == "--help":
             print("usage: query [word]")
+            sys.exit(0)
 
         queried_word = " ".join(sys.argv[1:])
 
