@@ -1,10 +1,8 @@
-.vscode
-data
-build
-dist
-test
-.idea
-**.DS_Store
+.vscode/
+data/
+test/
+.idea/
+.DS_Store
 *.spec
 
 # Byte-compiled / optimized / DLL files
