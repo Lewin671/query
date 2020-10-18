@@ -1,4 +1,8 @@
+**/.vscode
+**/__pycache__
+data
+build
+dist
 test
-__pycache__
-data/*.log.txt
-data/*.mp3
+**/.DS_Store
+*.spec

@@ -3,12 +3,15 @@ import os
 import sys
 import threading
 
+from playsound import playsound
+# 初始化需要这个
 import init
 from config import SOUND_DIR, DISPLAY_SOUND, BASE_PATH, LOGGER_URI
 from crawl import downloads
 from models import create_session, word, init_db
 from logger import logger
 
+# 打包需要用到这个
 import sqlalchemy.ext.baked
 
 
@@ -25,11 +28,8 @@ GRAY = 7  # 灰
 
 
 def display_music(sound_path):
-    try:
-        from playsound import playsound
+    if os.path.exists(path):
         playsound(sound_path)
-    except Exception as e:
-        logger.error(e)
 
 
 def query(w):
