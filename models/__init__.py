@@ -11,7 +11,7 @@ Base = declarative_base()
 
 # 创建一个engine
 def create_engine():
-    engine = sqlalchemy.create_engine('sqlite:///' + DATABASE_URI, echo=False)
+    engine = sqlalchemy.create_engine('sqlite:///' + DATABASE_URI,connect_args={'check_same_thread': False}, echo=False)
     return engine
 
 

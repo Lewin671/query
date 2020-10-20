@@ -14,7 +14,6 @@ from logger import logger
 # 打包需要用到这个
 import sqlalchemy.ext.baked
 
-
 fmt = '\033[0;3{}m{}\033[0m'.format
 
 BLACK = 0  # 黑
@@ -28,7 +27,7 @@ GRAY = 7  # 灰
 
 
 def display_music(sound_path):
-    if os.path.exists(path):
+    if os.path.exists(sound_path):
         playsound(sound_path)
 
 
@@ -49,7 +48,10 @@ def query(w):
 
     print(fmt(YELLOW, word_item.origin))
 
-    print(fmt(GREEN, word_item.phonetic))
+    # 中文没有音标
+    if word_item.phonetic is not None:
+        print(fmt(GREEN, word_item.phonetic))
+
     print(fmt(CYAN, word_item.translated.strip(','), end=""))
 
     for i, sentence in enumerate(word_item.sentences):
@@ -65,10 +67,8 @@ if __name__ == "__main__":
     if len(sys.argv) <= 1:
         print("usage: query [word]")
 
-    elif len(sys.argv) > 2:
-        print("parameter number is excessive.")
     else:
-        parameter = sys.argv[1]
+        parameter = " ".join(sys.argv[1:])
         if parameter == "-h" or parameter == "--help":
             print("usage: query [word]")
             sys.exit(0)
@@ -80,10 +80,11 @@ if __name__ == "__main__":
 
         if DISPLAY_SOUND:
             path = str()
+            filename = queried_word.replace(" ", "_")
             if DISPLAY_SOUND == "us":
-                path = os.path.join(SOUND_DIR, queried_word + "_us.mp3")
+                path = os.path.join(SOUND_DIR, filename + "_us.mp3")
             else:
-                path = os.path.join(SOUND_DIR, queried_word + "_us.mp3")
+                path = os.path.join(SOUND_DIR, filename + "_us.mp3")
 
             if not os.path.exists(path):
                 downloads.crawl(queried_word)
