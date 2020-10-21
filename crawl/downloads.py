@@ -20,7 +20,7 @@ json_path = "/html/body/script/text()"
 
 
 # 下载这个单词的json文件
-def download_json_obj(w):
+def download_json_obj(w: str):
     response = requests.get(url + "/" + w, headers=headers)
     html = etree.HTML(response.text)
 
@@ -29,15 +29,15 @@ def download_json_obj(w):
     return json.loads(data)
 
 
-# 解析json文件，得到一个单词对象，保存在数据库中
-def crawl(w):
+# 解析json文件，得到一个单词对象
+def crawl(queried_word: str) -> word.Word:
     global ph_en, ph_am, ph_en_mp3, ph_am_mp3
     ph_en = ph_am = ph_en_mp3 = ph_am_mp3 = None
 
     word_item = word.Word()
-    word_item.origin = w
+    word_item.origin = queried_word
 
-    data = download_json_obj(w)
+    data = download_json_obj(queried_word)
 
     # 解码python json格式
 
@@ -59,7 +59,7 @@ def crawl(w):
     if "ph_am_mp3" in symbol:
         ph_am_mp3 = symbol['ph_am_mp3']
     # 音标不为None，并且非空
-    if ph_en is not None and ph_am is not None\
+    if ph_en is not None and ph_am is not None \
             and ph_en != "" and ph_am != "":
         phonetic = '[' + ph_en + '], [' + ph_am + ']'
         word_item.phonetic = phonetic
@@ -68,7 +68,7 @@ def crawl(w):
     if DISPLAY_SOUND and ph_en_mp3 is not None and ph_am_mp3 is not None:
         sounds = [ph_en_mp3, ph_am_mp3]
         try:
-            filename = w.replace(" ", "_")
+            filename = queried_word.replace(" ", "_")
             urlretrieve(sounds[0], filename=os.path.join(SOUND_DIR, filename + "_uk.mp3"))
             urlretrieve(sounds[1], filename=os.path.join(SOUND_DIR, filename + "_us.mp3"))
         except Exception as e:  # 没有声音
@@ -79,10 +79,14 @@ def crawl(w):
 
     translated = str()
 
-    for part in parts:
+    l = len(parts)
+    for i in range(l):
+        part = parts[i]
         attr = part['part']
         meaning = ",".join(part['means'])
-        translated = translated + attr + meaning + "\n"
+        translated = translated + attr + meaning
+        if i != l-1:
+            translated = translated + "\n"
 
     word_item.translated = translated
 
@@ -105,12 +109,21 @@ def crawl(w):
         s.en = en_sentence[i]
         s.cn = cn_sentence[i]
         sentences.append(s)
+    word_item.sentences = sentences
+    return word_item
 
+
+# 将单词对象保存到数据库
+def save_word_item(word_item: word.Word):
     session = create_session()
     try:
-        word_item.sentences = sentences
         session.add(word_item)
         session.commit()
     except Exception as e:
-        # print(e)
         session.rollback()
+
+
+# 根据单词字符查询，并保存到数据库
+def save_word(queried_word: str):
+    word_item = crawl(queried_word)
+    save_word_item(word_item)

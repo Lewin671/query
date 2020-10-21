@@ -1,5 +1,5 @@
 # coding: utf-8
-from sqlalchemy import Column, String, Integer
+from sqlalchemy import Column, String, Integer, Boolean
 from sqlalchemy.orm import relationship
 
 from . import Base
@@ -17,6 +17,12 @@ class Word(Base):
     translated = Column(String, nullable=False)  # 翻译后的意思，包括词性和意思，如"vt. 好的，优秀的“
 
     sentences = relationship("Sentence", backref="word", cascade="all, delete, delete-orphan")  # 例句
+
+    # 统计查词次数
+    cnt = Column(Integer, default=0)
+
+    # 是否学会?
+    learned = Column(Boolean,default=False)
 
     def __repr__(self):
         return "Word(origin text is %s)" % (self.origin)
